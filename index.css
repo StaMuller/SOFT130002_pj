@@ -1,0 +1,69 @@
+.headPic{
+    margin: 0 auto;
+    width: 1500px;
+    height: 330px;
+    text-align: center;
+    padding: 10px;
+}
+.column{
+    float: left;
+    width: 30%;
+    padding: 15px;
+    text-align: center;
+}
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+@media screen and (max-width: 600px){
+    .column{
+        width: 100%;
+    }
+}
+img {
+    width: 250px;
+    height: 250px;
+}
+.head {
+    width: 800px;
+    height: 320px;
+}
+.des{
+    font-family: "Georgia", Times, serif;
+}
+a.more:link{ color: black }
+a.more:visited{ color: darkgray }
+a.more:hover{ color: darkcyan }
+a.more{
+    text-decoration: none;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+}
+#picContainer{
+    width: 800px;
+    height: 320px;
+    overflow: hidden;
+    margin: auto;
+}
+#photo{
+    width: 3200px;
+    animation: switch 8s ease-out infinite;
+    text-align: center;
+}
+#photo > img{
+    float: left;
+    width: 800px;
+    height: 320px;
+}
+@keyframes switch {
+    0%, 25%{
+        margin-left: -400px;
+    }
+    35%, 60%{
+        margin-left: -1200px;
+    }
+    70%, 100%{
+        margin-left: -2000px;
+    }
+}

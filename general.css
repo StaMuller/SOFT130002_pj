@@ -1,0 +1,66 @@
+html, body {                    <!-- 布局相关 -->
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.header{
+    background-color: darkgray;
+    padding: 20px;
+    text-align: center;
+}
+.title{
+    font-family: "Lucida Handwriting", "Courier New", monospace;
+    text-shadow: 2px 2px;
+}
+.slogan{
+    font-family: "Brush Script MT", "Courier New", monospace;
+    font-size: 20px;
+}
+.navigation{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+}
+ul{                                /* 导航栏相关 */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+li{
+    float: right;
+}
+li a{
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover{
+    background-color: #111;
+}
+a.navigation:link{ color: white }
+a.navigation:visited{ color: darkgray }
+a.navigation:hover{ color: darkcyan }
+a.navigation{
+    text-decoration: none;
+}
+#container{
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    position: relative;
+}
+#footer{
+    position: relative;
+    margin-top: 10px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    clear: both;
+}
+#myAccount{
+    width: 30px;
+    height: 30px;
+    float: right;
+}

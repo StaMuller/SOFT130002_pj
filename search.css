@@ -1,0 +1,97 @@
+input[type=text], [type=password]{
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f1f1f1;
+}
+.search{
+    font-family: "Comic Sans MS";
+    font-size: 20px;
+    margin: 10px;
+}
+.fakeImage{
+    background-color: darkgray;
+    width: 100%;
+    padding: 20px;
+}
+#arrow{
+    position: relative;
+    top: 8px;
+    left: 10px;
+}
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.column{
+    float: left;
+    width: 30%;
+    padding: 10px;
+    margin: auto;
+    text-align: center;
+}
+.card{
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+.pagination{
+    text-align: center;
+    margin: auto;
+    padding: 5px;
+}
+.pagination a{
+    color: black;
+    float: bottom;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+.pagination a.active{
+    background-color: darkgray;
+    color: white;
+    border-radius: 5px;
+}
+.pagination a:hover:not(.active){
+    background-color: #cccccc;
+    border-radius: 5px;
+}
+select{
+    float: right;
+    width: 20%;
+    padding: 12px 20px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f1f1f1;
+}
+.condition{
+    font-family: "Comic Sans MS";
+    font-size: 15px;
+}
+#fail{
+    font-family: "Copperplate Gothic Bold", Fantasy;
+    font-size: 30px;
+    text-align: center;
+}
+.picture{
+    width: 250px;
+    height: 250px;
+}
+.name{
+    font-family: "Lucida Handwriting", "Courier New", monospace;
+    font-size: 20px;
+}
+.author{
+    font-family: "Lucida Handwriting", "Courier New", monospace;
+    font-size: 15px;
+}
+.description{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+}

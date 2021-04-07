@@ -1,0 +1,38 @@
+.leftColumn{
+    float: left;
+    width: 65%;
+}
+.rightColumn{
+    float: left;
+    width: 35%;
+}
+.card{
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+.fakeImage{
+    background-color: darkgray;
+    width: 100%;
+    padding: 20px;
+}
+@media screen and (max-width: 800px){
+    .leftColumn, .rightColumn{
+        width: 100%;
+        padding: 0;
+    }
+}
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+input[type=text], [type=password]{
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}

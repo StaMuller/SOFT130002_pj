@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> search fail </title>
+    <link rel="stylesheet" type="text/css" href="general.css">
+    <link rel="stylesheet" type="text/css" href="search.css">
+</head>
+<body>
+<div id="container">
+    <div class="header">
+        <a href="collection.html">
+            <img src="resources/img/user.png" id="myAccount">
+        </a>
+        <h1 class="title">
+            Art World
+        </h1>
+        <p class="slogan">
+            Art is never abstruse.<br>
+            She is just the emotional transmission of artists.
+        </p>
+    </div>
+    <div>                                              <!--logo与标语-->
+        <ul>
+            <li><a href="register.html" class="navigation">
+                Register
+            </a></li>
+            <li><a href="login.html" class="navigation">
+                Login
+            </a></li>
+            <li><a class="navigation" href="searchSucceed.html">
+                Search
+            </a></li>
+            <li><a class="navigation" href="index.html">
+                HomePage
+            </a></li>
+        </ul>
+    </div>
+    <div class="search">
+        <form style="text-align: left">
+            <label> you may want to search </label>
+            <input type="text" name="username" placeholder="search...">
+            <span id="arrow">
+                <a href="searchSucceed.html">
+                    <img src="resources/img/arrow.png" width="24", height="24">
+                </a>
+            </span>
+            <select name="condition" class="condition">
+                <option> By Heat </option>
+                <option> By Price </option>
+                <option> By Date </option>
+            </select>
+        </form>
+    </div>
+    <hr>
+    <div class="row">
+        <p id="fail">
+            PITY! NO RESULT HERE.
+        </p>
+    </div>
+    <div class="pagination">
+        <a href="#"><<</a>
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">7</a>
+        <a href="#">>></a>
+    </div>
+</div>
+
+<div id="footer">
+    @ArtStore.Produced and maintained by Achillessanger at 2018.4.1 All Right Reserved
+</div>
+</body>
+</html>
