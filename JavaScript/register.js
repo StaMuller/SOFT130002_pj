@@ -2,7 +2,7 @@ function registerConfirm(){
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const passwordConfirm = document.getElementById("passwordConfirm").value;
-    const test = /^[0-9a-zA-Z]+$/;
+    const test = /^(?=.*\d)(?=.*[a-zA-Z])[\dA-Za-z]{8,16}$/;
 
     if(username === "" || password === "" || passwordConfirm === ""){
         if(username === ""){
@@ -15,7 +15,7 @@ function registerConfirm(){
     }else if(password !== passwordConfirm){
         window.alert("password and password confirmation is unmatched.");
     }else if(!test.test(password)){
-        window.alert("password must include both numbers and letters");
+        window.alert("password must be 8-16 long including both numbers and letters");
     }else{
         window.alert("Register Succeed!");
     }
