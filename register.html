@@ -6,6 +6,7 @@
     <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="css/general.css">
     <link rel="stylesheet" type="text/css" href="css/user.css">
+    <script type="text/javascript" src="JavaScript/register.js"></script>
 </head>
 <body>
     <div id="container">
@@ -47,17 +48,17 @@
             <label class="label">
                 Username
             </label>
-            <input type="text" name="username" placeholder="Your name...">
+            <input type="text" name="username" id="username" placeholder="Your name...">
             <br>
             <label class="label">
                 Password
             </label>
-            <input type="password" name="password" placeholder="Your password...">
+            <input type="password" name="password" id="password" placeholder="Your password...">
             <br>
             <label class="label">
                 Confirm Password
             </label>
-            <input type="password" name="password" placeholder="Confirm your password...">
+            <input type="password" name="password" id="passwordConfirm" placeholder="Confirm your password...">
             <br>
             <label class="label">
                 Birthday
@@ -68,7 +69,7 @@
                 Introduction to Self
             </label>
             <input type="text" name="introduction" placeholder="Your introduction...">
-            <input type="submit" value="CREATE MY ACCOUNT" class="button">
+            <input type="submit" value="CREATE MY ACCOUNT" class="button" onclick="registerConfirm()">
             <br>
             <a href="login.html" class="change">
                 <b>GO TO LOGIN</b>

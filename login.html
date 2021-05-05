@@ -8,6 +8,7 @@
     </title>
     <link rel="stylesheet" type="text/css" href="css/general.css">
     <link rel="stylesheet" type="text/css" href="css/user.css">
+    <script type="text/javascript" src="JavaScript/login.js"></script>
 </head>
 <body>
     <div id="container">
@@ -49,14 +50,14 @@
             <label class="label">
                 Username
             </label>
-            <input type="text" name="username" placeholder="Your name..." ">
+            <input type="text" name="username" id="username" placeholder="Your name..." value="">
             <br>
             <label class="label">
                 Password
             </label>
-            <input type="password" name="password" placeholder="Your password...">
+            <input type="password" name="password" id="password" placeholder="Your password...">
             <br>
-            <input type="submit" value="LOG IN" class="button">
+            <input type="submit" value="LOG IN" class="button" onclick="loginConfirm()">
             <br>
             <a href="register.html" class="change">
                 <b>CREAT ACCOUNT</b>

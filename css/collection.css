@@ -10,10 +10,11 @@
     background-color: white;
     padding: 20px;
     margin-top: 20px;
+    clear: both;
+    display: table;
 }
-.fakeImage{
-    background-color: darkgray;
-    width: 100%;
+.Image{
+    width: 80%;
     padding: 20px;
 }
 @media screen and (max-width: 800px){
@@ -35,4 +36,33 @@ input[type=text], [type=password]{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+.picTitle{
+    font-family: "Lucida Handwriting", "Courier New", monospace;
+    text-shadow: 2px 2px;
+    font-size: 30px;
+}
+.picAuthor{
+    font-family: "Brush Script MT", "Courier New", monospace;
+    font-size: 20px;
+}
+.picDis{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+}
+.deleteButton{
+    background: black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 12px;
+    cursor: pointer;
+    opacity: 0.6;
+}
+.deleteButton:hover{
+    opacity: 1;
+    background: darkred;
 }

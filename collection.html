@@ -5,6 +5,7 @@
     <title>collection page</title>
     <link rel="stylesheet" type="text/css" href="css/general.css">
     <link rel="stylesheet" type="text/css" href="css/collection.css">
+    <script type="text/javascript" src="JavaScript/collection.js"></script>
 </head>
 <body>
     <div id="container">
@@ -39,17 +40,23 @@
     <hr>
     <div class="row">
         <div class="leftColumn">
-            <div class="card">
-                <h1>ART WORK</h1>
-                <h2>Artist</h2>
-                <div class="fakeImage" style="height: 200px">Picture</div>
-                <p>Some description</p>
+            <div class="card" id="card1">
+                <h1 class="picTitle">Where Do We Come From? What Are We? Where Are We Going?</h1>
+                <h2 class="picAuthor">Paul Gaugin</h2>
+                <img src="resources/img/56.jpg" class="Image">
+                <p class="picDis">This is Paul Gaugin’s most famous painting, and he considered it his masterpiece, and the culmination of his thoughts.</p>
+                <button class="deleteButton" id="delete1" type="button" onclick="deleteCollection(this)">
+                    DELETE IT
+                </button>
             </div>
-            <div class="card">
-                <h1>ART WORK</h1>
-                <h2>Artist</h2>
-                <div class="fakeImage" style="height: 200px">Picture</div>
-                <p>Some description</p>
+            <div class="card" id="card2">
+                <h1 class="picTitle">Wheatfield with Crows</h1>
+                <h2 class="picAuthor">Vincent Van Gogh</h2>
+                <img src="resources/img/65.jpg" class="Image">
+                <p class="picDis">Wheatfield with Crows is a July 1890 painting by Vincent van Gogh. It is commonly but mistakenly stated that this was Van Gogh's last painting.</p>
+                <button class="deleteButton" id="delete2" type="button" onclick="deleteCollection(this)">
+                    DELETE IT
+                </button>
             </div>
         </div>
         <div class="rightColumn">
