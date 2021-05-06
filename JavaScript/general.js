@@ -1,59 +1,123 @@
-var track = ["Homepage"];
-
 function trackShow(){
     let trackStr = "";
-    for(i = 0; i < track.length;){
-        trackStr += track[i];
+    const tmp = document.cookie.split('=');
+    const tmpArray = tmp[1].split(",");
+    for(let i = 0; i < tmpArray.length;){
+        trackStr += tmpArray[i];
         ++i;
-        if(i !== track.length){
-            trackStr += " -> ";
+        if(i !== tmpArray.length){
+            trackStr += "->";
         }
     }
     document.getElementById("track").innerText=trackStr;
 }
 
 function goRegister(){
-    track.push("Login");
-    for(i = 0; i < track.length; ++i){
-        if(track[i] === "Register"){
-            track = track.slice(0, track.indexOf("Register"));
+    let tmp = document.cookie.split("=");
+    let tmpArray = tmp[1].split(",");
+    let i = 0;
+    let array = [];
+    while(i < tmpArray.length){
+        array.push(tmpArray[i]);
+        if(tmpArray[i] === "Register"){
             break;
         }
+        ++i;
     }
-    if(i === track.length){
-        track.push("Register");
+    if(i === tmpArray.length){
+        array.push("Register");
     }
+    document.cookie=tmp[0] + "=" + tmpArray[0] + "; expires=Thu,01 Jan 1970 00:00:00 GMT";
+    document.cookie="name=" + array;
 }
 function goLogin(){
-    for(i = 0; i < track.length; ++i){
-        if(track[i] === "Login"){
-            track = track.slice(0, track.indexOf("Login"));
+    let tmp = document.cookie.split("=");
+    let tmpArray = tmp[1].split(",");
+    let i = 0;
+    let array = [];
+    while(i < tmpArray.length){
+        array.push(tmpArray[i]);
+        if(tmpArray[i] === "Login"){
             break;
         }
+        ++i;
     }
-    if(i === track.length){
-        track.push("Login");
+    if(i === tmpArray.length){
+        array.push("Login");
     }
+    document.cookie=tmp[0] + "=" + tmpArray[0] + "; expires=Thu,01 Jan 1970 00:00:00 GMT";
+    document.cookie="name=" + array;
 }
 function goSearch(){
-    for(i = 0; i < track.length; ++i){
-        if(track[i] === "Search"){
-            track = track.slice(0, track.indexOf("Search"));
+    let tmp = document.cookie.split("=");
+    let tmpArray = tmp[1].split(",");
+    let i = 0;
+    let array = [];
+    while(i < tmpArray.length){
+        array.push(tmpArray[i]);
+        if(tmpArray[i] === "Search"){
             break;
         }
+        ++i;
     }
-    if(i === track.length){
-        track.push("Search");
+    if(i === tmpArray.length){
+        array.push("Search");
     }
+    document.cookie=tmp[0] + "=" + tmpArray[0] + "; expires=Thu,01 Jan 1970 00:00:00 GMT";
+    document.cookie="name=" + array;
 }
 function goHomepage(){
-    for(i = 0; i < track.length; ++i){
-        if(track[i] === "Homepage"){
-            track = track.slice(0, track.indexOf("Homepage"));
+    document.cookie="name=" + new Array("Homepage");
+    let tmp = document.cookie.split("=");
+    let tmpArray = tmp[1].split(",");
+    let i = 0;
+    let array = [];
+    while(i < tmpArray.length){
+        array.push(tmpArray[i]);
+        if(tmpArray[i] === "Homepage"){
             break;
         }
+        ++i;
     }
-    if(i === track.length){
-        track.push("Homepage");
+    if(i === tmpArray.length){
+        array.push("Homepage");
     }
+    document.cookie=tmp[0] + "=" + tmpArray[0] + "; expires=Thu,01 Jan 1970 00:00:00 GMT";
+    document.cookie="name=" + array;
+}
+function goExhibition(){
+    let tmp = document.cookie.split("=");
+    let tmpArray = tmp[1].split(",");
+    let i = 0;
+    let array = [];
+    while(i < tmpArray.length){
+        array.push(tmpArray[i]);
+        if(tmpArray[i] === "Exhibition"){
+            break;
+        }
+        ++i;
+    }
+    if(i === tmpArray.length){
+        array.push("Exhibition");
+    }
+    document.cookie=tmp[0] + "=" + tmpArray[0] + "; expires=Thu,01 Jan 1970 00:00:00 GMT";
+    document.cookie="name=" + array;
+}
+function goCollection(){
+    let tmp = document.cookie.split("=");
+    let tmpArray = tmp[1].split(",");
+    let i = 0;
+    let array = [];
+    while(i < tmpArray.length){
+        array.push(tmpArray[i]);
+        if(tmpArray[i] === "Collection"){
+            break;
+        }
+        ++i;
+    }
+    if(i === tmpArray.length){
+        array.push("Collection");
+    }
+    document.cookie=tmp[0] + "=" + tmpArray[0] + "; expires=Thu,01 Jan 1970 00:00:00 GMT";
+    document.cookie="name=" + array;
 }
