@@ -14,7 +14,8 @@
     display: table;
 }
 .Image{
-    width: 80%;
+    width: 50%;
+    height: 50%;
     padding: 20px;
 }
 @media screen and (max-width: 800px){
@@ -65,4 +66,8 @@ input[type=text], [type=password]{
 .deleteButton:hover{
     opacity: 1;
     background: darkred;
+}
+a.more:link{ color: #111111 }
+a.more{
+    text-decoration: none;
 }

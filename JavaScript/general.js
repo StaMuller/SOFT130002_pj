@@ -6,7 +6,7 @@ function trackShow(){
         trackStr += tmpArray[i];
         ++i;
         if(i !== tmpArray.length){
-            trackStr += "->";
+            trackStr += " -> ";
         }
     }
     document.getElementById("track").innerText=trackStr;

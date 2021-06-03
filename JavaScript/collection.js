@@ -1,4 +1,5 @@
 function deleteCollection(obj){
+    window.alert("Are you sure to delete this artwork?");
     const id = obj.id;
     const ele = document.getElementById(id);
     const pa = ele.parentElement;

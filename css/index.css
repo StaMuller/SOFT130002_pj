@@ -1,11 +1,32 @@
 .headPic{
     margin: 0 auto;
     width: 1500px;
-    height: 330px;
+    height: 550px;
     text-align: center;
     padding: 10px;
+    font-size: 15px;
+}
+.headPicTitle{
+    font-family: "Georgia", Times, serif;
+    font-size: 15px;
+    text-align: center;
+    width: 800px;
+    padding-left: 100px;
+}
+.headPicDes{
+    font-size: 15px;
+    width: 800px;
+    text-align: center;
+    padding-left: 100px;
+    word-wrap: break-word;
 }
 .column{
+    float: left;
+    width: 30%;
+    padding: 15px;
+    text-align: center;
+}
+.headColumn{
     float: left;
     width: 30%;
     padding: 15px;
@@ -28,6 +49,9 @@ img {
 .head {
     width: 800px;
     height: 320px;
+    float: bottom;
+    text-align: center;
+    padding-left: 100px;
 }
 .des{
     font-family: "Georgia", Times, serif;
@@ -41,8 +65,8 @@ a.more{
     font-size: 18px;
 }
 #picContainer{
-    width: 800px;
-    height: 320px;
+    width: 1000px;
+    height: 550px;
     overflow: hidden;
     margin: auto;
 }
@@ -53,15 +77,15 @@ a.more{
 }
 #photo > img{
     float: left;
-    width: 800px;
-    height: 320px;
+    width: 1000px;
+    height: 450px;
 }
 @keyframes switch {
     0%, 25%{
-        margin-left: -400px;
+        margin-left: -10px;
     }
     35%, 60%{
-        margin-left: -1200px;
+        margin-left: -1000px;
     }
     70%, 100%{
         margin-left: -2000px;
