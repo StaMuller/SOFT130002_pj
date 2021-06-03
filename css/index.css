@@ -55,6 +55,7 @@ img {
 }
 .des{
     font-family: "Georgia", Times, serif;
+    font-size: 15px;
 }
 a.more:link{ color: black }
 a.more:visited{ color: darkgray }

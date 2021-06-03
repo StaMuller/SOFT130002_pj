@@ -91,7 +91,6 @@
                 <?php
                 $sql = "SELECT * FROM artworks ORDER BY timeReleased DESC limit 0,3";
                 $result = $pdo->query($sql);
-                $learnMore = '<a href="exhibition.php" class="more"><b>LEARN MORE</b></a></div>';
                 while($photo = $result->fetch()){
                     $artworkID = $photo['artworkID'];
                     $sql = "SELECT * FROM wishlist WHERE artworkID = {$artworkID}";
@@ -102,9 +101,10 @@
                         $added = 1;
                     }
                     $imageFileName = '<div class="column"><a href="exhibition.php?artworkID=' . $artworkID . '&added=' . $added . '"><img src="resources/img/' . $photo['imageFileName'] . '"></a><br>';
-                    $title = '<span class = "des"><h1 class="headPicDes"><b>' . $photo['title'] . '</b></h1>';
+                    $title = '<span class = "des"><h1 class="des"><b>' . $photo['title'] . '</b></h1>';
                     $artist = $photo['artist'] . '<br>';
                     $description = $photo['description'] . '<br></span>';
+                    $learnMore = '<a href="exhibition.php?artworkID=' . $artworkID . '&added=' . $added . '" class="more"><b>LEARN MORE</b></a></div>';
                     echo $imageFileName . $title . $artist . $description . $learnMore;
                 }
 
