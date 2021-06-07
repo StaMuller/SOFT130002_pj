@@ -5,7 +5,7 @@ require_once ("./php/config.php");
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> search success </title>
+    <title> Search </title>
     <link rel="stylesheet" type="text/css" href="css/general.css">
     <link rel="stylesheet" type="text/css" href="css/search.css">
     <script type="text/javascript" src="JavaScript/general.js"></script>
@@ -23,7 +23,7 @@ require_once ("./php/config.php");
 
     <div id="container">
     <div class="header">
-        <a href="collection.php">
+        <a href="collection.php?info=0">
             <img src="resources/img/user.png" id="myAccount">
         </a>
         <h1 class="title">
@@ -50,18 +50,31 @@ require_once ("./php/config.php");
             </a></li>
         </ul>
     </div>
-<!--    <div id="track" class="track"></div>-->
+    <div id="track" class="track"></div>
     <!------------------------------------------------------------------------------------------>
     <div class="search">
         <form style="text-align: left" action="./php/searchArtwork.php" method="get">
             <label> you may want to search </label>
             <input type="text" name="info" placeholder="something about art">
             <input type="submit" value="search" name="submit">
-            <select name="condition" class="condition">
-                <option value="view"> By View </option>
-                <option value="price"> By Price </option>
-                <option value="timeReleased"> By TimeReleased</option>
-            </select>
+            <?php
+                $condition = $_GET['condition'];
+                if($condition == "view"){
+                    $option1 = '<option value="view"> By View </option>';
+                    $option2 = '<option value="price"> By Price </option>';
+                    $option3 = '<option value="timeReleased"> By TimeReleased </option>';
+                }else if($condition == "price"){
+                    $option1 = '<option value="price"> By Price </option>';
+                    $option2 = '<option value="view"> By View </option>';
+                    $option3 = '<option value="timeReleased"> By TimeReleased </option>';
+                }else{
+                    $option1 = '<option value="timeReleased"> By TimeReleased </option>';
+                    $option2 = '<option value="price"> By Price </option>';
+                    $option3 = '<option value="view"> By View </option>';
+                }
+
+                echo '<select name="condition" class="condition">' . $option1 . $option2 . $option3 . '</select>';
+            ?>
         </form>
     </div>
     <hr>
@@ -70,13 +83,14 @@ require_once ("./php/config.php");
             $info = $_GET['info'];
             $condition = $_GET['condition'];
             if($info == "0"){
-                echo '<div class="row"><p id="fail">SEARCH FOR WHAT YOU WANT!</p></div>';
+                $sql = "SELECT * FROM artworks";
             }else{
                 $sql = "SELECT * FROM artworks 
                 WHERE title like '%{$info}%' 
                 OR description like '%{$info}%'
                 OR artist like '%{$info}%'
                 ORDER BY {$condition} DESC ";
+            }
                 $result = $pdo->query($sql);
 
                 if($row = $result->fetch()){
@@ -85,13 +99,20 @@ require_once ("./php/config.php");
                         echo '<div class="row">';
                         for($index = 0; $index < 3; $index++){
                             if($row) {
+                                $sql = "SELECT * FROM wishlist WHERE artworkID = {$row['artworkID']}";
+                                $exist = $pdo->query($sql);
+                                if($exist->fetch()){
+                                    $added = 0;
+                                }else{
+                                    $added = 1;
+                                }
                                 echo '<div class="column"><div class="card">';
                                 echo '<h1 class="name"><b>' . $row['title'] . '</b></h1>';
                                 echo '<h2 class="author">' . $row['artist'] . '</h2>';
                                 echo '<h2 class="author"> View: ' . $row['view'] . '</h2>';
                                 echo '<h2 class="author"> Price: ' . $row['price'] . '</h2>';
                                 echo '<h2 class="author"> TimeReleased: ' . $row['timeReleased'] . '</h2>';
-                                echo '<a href="exhibition.php?artworkID=' . $row['artworkID'] . '">';
+                                echo '<a href="exhibition.php?artworkID=' . $row['artworkID'] . '&added=' . $added .  '">';
                                 echo '<img src="resources/img/' . $row['imageFileName'] . '" class="picture"></a>';
                                 echo '<p class="description">' . $row['description'] . '</p></div></div>';
                             }else{
@@ -105,9 +126,6 @@ require_once ("./php/config.php");
                 }else{
                     echo '<div class="row"><p id="fail">PITY! NO RESULT HERE.</p></div>';
                 }
-            }
-
-
 
         ?>
 

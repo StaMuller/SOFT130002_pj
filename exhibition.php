@@ -28,7 +28,7 @@ require_once ("./php/config.php");
     <!-- logo、标语与导航栏 -->
     <div id="container">
     <div class="header">
-        <a href="collection.php">
+        <a href="collection.php?info=0">
             <img src="resources/img/user.png" id="myAccount">
         </a>
         <h1 class="title">
@@ -55,7 +55,7 @@ require_once ("./php/config.php");
             </a></li>
         </ul>
     </div>
-<!--    <div id="track" class="track"></div>-->
+    <div id="track" class="track"></div>
     <!------------------------------------------------------------------------------------------>
         <?php
             $artworkID = $_GET['artworkID'];
@@ -65,7 +65,7 @@ require_once ("./php/config.php");
             $artwork = $result->fetch();
 
             $title = '<div class="detail"><b>' . $artwork['title'] . '</b><br>';
-            $author = '<a href="search.php" class="author">' . $artwork['artist'] . '</a></div><hr>';
+            $author = '<a href="search.php?info=0&condition=view" class="author">' . $artwork['artist'] . '</a></div><hr>';
             $picture = '<div class="row"><div class="column"><img id="picture" src="resources/img/' . $artwork['imageFileName'] . '"></div>';
             $yearOfWork = '<div class="column" id="description">Painted ' . $artwork['yearOfWork'] . '<br>';
             $genre = $artwork['genre'] . '<br>';

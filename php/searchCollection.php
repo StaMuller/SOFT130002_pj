@@ -9,10 +9,7 @@ try{
 ?>
 
 <?php
-$artworkID = $_GET['artworkID'];
 $info = $_GET['info'];
-$sql = "DELETE FROM wishlist WHERE artworkID = {$artworkID}";
-$pdo->query($sql);
 
 echo "<script>window.location.href = ('../collection.php?info={$info}');</script>";
 ?>

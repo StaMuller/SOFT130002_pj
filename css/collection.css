@@ -1,3 +1,13 @@
+input[type=text]{
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f1f1f1;
+}
 .leftColumn{
     float: left;
     width: 65%;
@@ -5,6 +15,11 @@
 .rightColumn{
     float: left;
     width: 35%;
+}
+.search{
+    font-family: "Comic Sans MS";
+    font-size: 20px;
+    margin: 10px;
 }
 .card{
     background-color: white;
@@ -70,4 +85,9 @@ input[type=text], [type=password]{
 a.more:link{ color: #111111 }
 a.more{
     text-decoration: none;
+}
+#fail{
+    font-family: "Copperplate Gothic Bold", Fantasy;
+    font-size: 30px;
+    text-align: center;
 }

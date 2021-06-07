@@ -25,7 +25,7 @@
 
     <div id="container">
     <div class="header">
-        <a href="collection.php">
+        <a href="collection.php?info=0">
             <img src="resources/img/user.png" id="myAccount">
         </a>
         <h1 class="title">
@@ -52,7 +52,7 @@
             </a></li>
         </ul>
     </div>
-<!--    <div id="track"></div>-->
+    <div id="track"></div>
         <!------------------------------------------------------------------------------------------>
     <div class="headPic">
         <!-- 热门艺术品展示：展示访问量最多的三个艺术品 -->

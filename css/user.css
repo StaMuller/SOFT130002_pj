@@ -12,6 +12,9 @@
 .label{
     font-size: 18px;
     font-family: "Times New Roman", Times, serif;
+    width: 150px;
+    text-align: center;
+    display: inline-block;
 }
 input[type=text], [type=password]{
     width: 50%;
@@ -40,7 +43,7 @@ input[type=text], [type=password]{
     opacity: 1;
 }
 a.change:link{ color: black }
-a.change:visited{ color: #333333 }
+a.change:visited{ color: darkgray }
 a.change:hover{ color: darkcyan }
 a.change{
     text-decoration: none;
