@@ -34,29 +34,29 @@ require_once ("./php/config.php");
             This is your art world.
         </p>
     </div>
-    <div>                                              <!--logo与标语-->
-        <ul>
-            <li><a href="register.html" class="navigation">
-                Register
-            </a></li>
-            <li><a href="login.html" class="navigation">
-                Login
-            </a></li>
-            <li><a href="search.php?info=0&condition=view" class="navigation">
-                Search
-            </a></li>
-            <li><a class="navigation" href="index.php">
-                HomePage
-            </a></li>
-        </ul>
-    </div>
+        <div>                                              <!--logo与标语-->
+            <ul>
+                <li><a href="register.html" class="navigation">
+                        Register
+                    </a></li>
+                <li><a href="login.html" class="navigation">
+                        Login
+                    </a></li>
+                <li><a href="search.php?info=0&condition=view&currentPage=1" class="navigation">
+                        Search
+                    </a></li>
+                <li><a class="navigation" href="index.php">
+                        HomePage
+                    </a></li>
+            </ul>
+        </div>
     <div id="track" class="track"></div>
     <!------------------------------------------------------------------------------------------>
     <div class="search">
         <form style="text-align: left" action="./php/searchCollection.php" method="get">
             <label> Search in my art world </label>
             <input type="text" name="info">
-            <input type="submit" value="search" name="submit">
+            <input type="submit" value="search" name="submit" style="font-size: 20px; height: 30px; font-family: 'Times New Roman'">
         </form>
     </div>
     <hr>
@@ -82,7 +82,7 @@ require_once ("./php/config.php");
                 $artwork = $pdo->query($sql);
                 if($work = $artwork->fetch()) {
                     echo '<div class="card" id="card' . $index . '">';
-                    echo '<a href="exhibition.php?artworkID=' . $work['artworkID'] . '&&added=1" class="more"><h1 class="picTitle">' . $work['title'] . '</h1></a>';
+                    echo '<a href="exhibition.php?artworkID=' . $work['artworkID'] . '&&added=0" class="more"><h1 class="picTitle">' . $work['title'] . '</h1></a>';
                     echo '<h2 class="picAuthor">' . $work['artist'] . '</h2>';
                     echo '<h2 style="font-size: 15px">' . $work['timeReleased'] . '</h2>';
                     echo '<img src="resources/img/' . $work['imageFileName'] . '" class="Image">';
@@ -122,7 +122,7 @@ require_once ("./php/config.php");
     </div>
     </div>
 
-    <div id="footer">
+    <div id="myFooter">
         @ArtStore.Produced and maintained by Achillessanger at 2018.4.1 All Right Reserved
     </div>
 </body>

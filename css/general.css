@@ -57,8 +57,9 @@ a.navigation{
     height: 100%;
     position: relative;
 }
-#footer{
+#myFooter{
     position: relative;
+    bottom: 0;
     margin-top: 10px;
     background-color: black;
     color: white;

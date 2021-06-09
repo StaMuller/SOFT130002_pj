@@ -1,4 +1,4 @@
-input[type=text], [type=password]{
+input[type=text]{
     width: 20%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -8,34 +8,32 @@ input[type=text], [type=password]{
     box-sizing: border-box;
     background-color: #f1f1f1;
 }
-.search{
+.search {
     font-family: "Comic Sans MS";
     font-size: 20px;
     margin: 10px;
-}
-.fakeImage{
-    background-color: darkgray;
-    width: 100%;
-    padding: 20px;
 }
 #arrow{
     position: relative;
     top: 8px;
     left: 10px;
 }
-.row:after{
+.noRow{
+    height: 400px;
+}
+.Row:after{
     content: "";
     display: table;
     clear: both;
 }
-.column{
+.Col{
     float: left;
     width: 30%;
     padding: 10px;
     margin: auto;
     text-align: center;
 }
-.card{
+.picCard{
     background-color: white;
     padding: 20px;
     margin-top: 20px;

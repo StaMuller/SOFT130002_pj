@@ -39,22 +39,22 @@ require_once ("./php/config.php");
             She is just the emotional transmission of artists.
         </p>
     </div>
-    <div>
-        <ul>
-            <li><a href="register.html" class="navigation">
-                Register
-            </a></li>
-            <li><a href="login.html" class="navigation">
-                Login
-            </a></li>
-            <li><a href="search.php?info=0&condition=view" class="navigation">
-                Search
-            </a></li>
-            <li><a class="navigation" href="index.php">
-                HomePage
-            </a></li>
-        </ul>
-    </div>
+        <div>                                              <!--logo与标语-->
+            <ul>
+                <li><a href="register.html" class="navigation">
+                        Register
+                    </a></li>
+                <li><a href="login.html" class="navigation">
+                        Login
+                    </a></li>
+                <li><a href="search.php?info=0&condition=view&currentPage=1" class="navigation">
+                        Search
+                    </a></li>
+                <li><a class="navigation" href="index.php">
+                        HomePage
+                    </a></li>
+            </ul>
+        </div>
     <div id="track" class="track"></div>
     <!------------------------------------------------------------------------------------------>
         <?php
@@ -99,7 +99,7 @@ require_once ("./php/config.php");
     </div>
     </div>
 
-    <div id="footer">
+    <div id="myFooter">
         @ArtStore.Produced and maintained by Achillessanger at 2018.4.1 All Right Reserved
     </div>
 </body>

@@ -23,22 +23,22 @@
             She is just the emotional transmission of artists.
         </p>
     </div>
-    <div>
-        <ul>
-            <li><a href="register.html" class="navigation">
-                Register
-            </a></li>
-            <li><a href="login.html" class="navigation">
-                Login
-            </a></li>
-            <li><a href="search.php?info=0&condition=view" class="navigation">
-                Search
-            </a></li>
-            <li><a class="navigation" href="index.php">
-                HomePage
-            </a></li>
-        </ul>
-    </div>
+        <div>                                              <!--logo与标语-->
+            <ul>
+                <li><a href="register.html" class="navigation">
+                    Register
+                </a></li>
+                <li><a href="login.html" class="navigation">
+                    Login
+                </a></li>
+                <li><a href="search.php?info=0&condition=view&currentPage=1" class="navigation">
+                    Search
+                </a></li>
+                <li><a class="navigation" href="index.php">
+                    HomePage
+                </a></li>
+            </ul>
+        </div>
     <div id="track"></div>
     <!------------------------------------------------------------------------------------------>
     <h2 align="center" id="slogan">
@@ -63,14 +63,19 @@
             <input type="password" name="password" id="passwordConfirm" placeholder="Confirm your password...">
             <br>
             <label class="label">
-                Birthday
+                Email
             </label>
-            <input type="text" name="birthday" placeholder="Your birthday...">
+            <input type="text" name="email" id="email" placeholder="Your email...">
             <br>
             <label class="label">
-                Introduction to Self
+                Tel
             </label>
-            <input type="text" name="introduction" placeholder="Your introduction...">
+            <input type="text" name="tel" placeholder="Your telephone...">
+            <br>
+            <label class="label">
+                Address
+            </label>
+            <input type="text" name="address" placeholder="Your address...">
             <input type="submit" value="CREATE MY ACCOUNT" class="button" onclick="registerConfirm()">
             <br>
             <a href="login.html" class="change">
@@ -81,7 +86,7 @@
     </div>
     <br>
     <br>
-    <div id="footer">
+    <div id="myFooter">
         @ArtStore.Produced and maintained by Achillessanger at 2018.4.1 All Right Reserved
     </div>
 </body>

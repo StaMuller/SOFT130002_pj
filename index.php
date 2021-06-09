@@ -44,7 +44,7 @@
             <li><a href="login.html" class="navigation">
                 Login
             </a></li>
-            <li><a href="search.php?info=0&condition=view" class="navigation">
+            <li><a href="search.php?info=0&condition=view&currentPage=1" class="navigation">
                 Search
             </a></li>
             <li><a class="navigation" href="index.php">
@@ -57,7 +57,7 @@
     <div class="headPic">
         <!-- 热门艺术品展示：展示访问量最多的三个艺术品 -->
         <div id="picContainer">
-            <div id="photo">
+            <div id="photoContainer">
 
                 <?php
                 $sql = "SELECT * FROM artworks ORDER BY view DESC limit 0,3";
@@ -86,7 +86,7 @@
     <hr>
     <h1 style="font-size: 15px" align="center" class="title"> More art works </h1>
         <!--最新艺术品展示：展示最新发布的三个艺术品-->
-    <div class="row">
+    <div class="Row">
 
                 <?php
                 $sql = "SELECT * FROM artworks ORDER BY timeReleased DESC limit 0,3";
@@ -100,7 +100,7 @@
                     }else{
                         $added = 1;
                     }
-                    $imageFileName = '<div class="column"><a href="exhibition.php?artworkID=' . $artworkID . '&added=' . $added . '"><img src="resources/img/' . $photo['imageFileName'] . '"></a><br>';
+                    $imageFileName = '<div class="Col"><a href="exhibition.php?artworkID=' . $artworkID . '&added=' . $added . '"><img src="resources/img/' . $photo['imageFileName'] . '"></a><br>';
                     $title = '<span class = "des"><h1 class="des"><b>' . $photo['title'] . '</b></h1>';
                     $artist = $photo['artist'] . '<br>';
                     $description = $photo['description'] . '<br></span>';
@@ -113,7 +113,7 @@
     </div>
     </div>
 
-    <div id="footer">
+    <div id="myFooter">
         @ArtStore.Produced and maintained by Achillessanger at 2018.4.1 All Right Reserved
     </div>
 
