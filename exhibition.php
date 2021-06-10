@@ -41,10 +41,10 @@ require_once ("./php/config.php");
     </div>
         <div>                                              <!--logo与标语-->
             <ul>
-                <li><a href="register.html" class="navigation">
+                <li><a href="register.php" class="navigation">
                         Register
                     </a></li>
-                <li><a href="login.html" class="navigation">
+                <li><a href="login.php" class="navigation">
                         Login
                     </a></li>
                 <li><a href="search.php?info=0&condition=view&currentPage=1" class="navigation">
@@ -65,7 +65,7 @@ require_once ("./php/config.php");
             $artwork = $result->fetch();
 
             $title = '<div class="detail"><b>' . $artwork['title'] . '</b><br>';
-            $author = '<a href="search.php?info=0&condition=view" class="author">' . $artwork['artist'] . '</a></div><hr>';
+            $author = '<a href="search.php?info=0&condition=view&currentPage=1" class="author">' . $artwork['artist'] . '</a></div><hr>';
             $picture = '<div class="row"><div class="column"><img id="picture" src="resources/img/' . $artwork['imageFileName'] . '"></div>';
             $yearOfWork = '<div class="column" id="description">Painted ' . $artwork['yearOfWork'] . '<br>';
             $genre = $artwork['genre'] . '<br>';

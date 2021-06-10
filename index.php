@@ -38,10 +38,10 @@
     </div>
     <div>                                              <!--logo与标语-->
         <ul>
-            <li><a href="register.html" class="navigation">
+            <li><a href="register.php" class="navigation">
                 Register
             </a></li>
-            <li><a href="login.html" class="navigation">
+            <li><a href="login.php" class="navigation">
                 Login
             </a></li>
             <li><a href="search.php?info=0&condition=view&currentPage=1" class="navigation">

@@ -1,15 +1,18 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>
+        Sign In
+    </title>
     <link rel="stylesheet" type="text/css" href="css/general.css">
     <link rel="stylesheet" type="text/css" href="css/user.css">
-    <script type="text/javascript" src="JavaScript/register.js"></script>
+    <script type="text/javascript" src="JavaScript/login.js"></script>
     <script type="text/javascript" src="JavaScript/general.js"></script>
 </head>
-<body onload="goRegister();trackShow()">
+<body onload="goLogin();trackShow()">
     <div id="container">
     <div class="header">
         <a href="collection.php?info=0">
@@ -25,10 +28,10 @@
     </div>
         <div>                                              <!--logo与标语-->
             <ul>
-                <li><a href="register.html" class="navigation">
+                <li><a href="register.php" class="navigation">
                     Register
                 </a></li>
-                <li><a href="login.html" class="navigation">
+                <li><a href="login.php" class="navigation">
                     Login
                 </a></li>
                 <li><a href="search.php?info=0&condition=view&currentPage=1" class="navigation">
@@ -39,10 +42,10 @@
                 </a></li>
             </ul>
         </div>
-    <div id="track"></div>
+    <div id="track" class="track"></div>
     <!------------------------------------------------------------------------------------------>
     <h2 align="center" id="slogan">
-        Sign Up For Your New Account.
+        Enter Your Art World Here
     </h2>
 
     <div class="user">
@@ -50,42 +53,22 @@
             <label class="label">
                 Username
             </label>
-            <input type="text" name="username" id="username" placeholder="Your name...">
+            <input type="text" name="username" id="username" placeholder="Your name..." value="">
             <br>
             <label class="label">
                 Password
             </label>
             <input type="password" name="password" id="password" placeholder="Your password...">
             <br>
-            <label class="label">
-                Confirm Password
-            </label>
-            <input type="password" name="password" id="passwordConfirm" placeholder="Confirm your password...">
+            <input type="submit" value="LOG IN" class="button" onclick="loginConfirm()">
             <br>
-            <label class="label">
-                Email
-            </label>
-            <input type="text" name="email" id="email" placeholder="Your email...">
-            <br>
-            <label class="label">
-                Tel
-            </label>
-            <input type="text" name="tel" placeholder="Your telephone...">
-            <br>
-            <label class="label">
-                Address
-            </label>
-            <input type="text" name="address" placeholder="Your address...">
-            <input type="submit" value="CREATE MY ACCOUNT" class="button" onclick="registerConfirm()">
-            <br>
-            <a href="login.html" class="change">
-                <b>GO TO LOGIN</b>
+            <a href="register.php" class="change">
+                <b>CREAT ACCOUNT</b>
             </a>
         </form>
     </div>
     </div>
-    <br>
-    <br>
+
     <div id="myFooter">
         @ArtStore.Produced and maintained by Achillessanger at 2018.4.1 All Right Reserved
     </div>
