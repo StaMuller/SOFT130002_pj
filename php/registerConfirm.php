@@ -38,6 +38,8 @@ try{
             $_SESSION['password'] = $password;
             $sql = "INSERT INTO users (`name`, email, password, tel, address) VALUES ('{$username}', '{$email}', '{$password}', '{$tel}', '{$address}')";
             $pdo->query($sql);
+            $sql = "SELECT * FROM users WHERE `name` = \"{$username}\"";
+            $_SESSION['userID'] = $pdo->query($sql)->fetch()['userID'];
             $result = array("message" => "succeed");
             echo json_encode($result);
         }

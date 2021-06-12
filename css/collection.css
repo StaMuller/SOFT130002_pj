@@ -11,10 +11,18 @@ input[type=text]{
 .leftColumn{
     float: left;
     width: 65%;
+    height: auto;
 }
 .rightColumn{
     float: left;
     width: 35%;
+    height: auto;
+}
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+    height: auto;
 }
 .search{
     font-family: "Comic Sans MS";
@@ -38,11 +46,6 @@ input[type=text]{
         width: 100%;
         padding: 0;
     }
-}
-.row:after{
-    content: "";
-    display: table;
-    clear: both;
 }
 input[type=text], [type=password]{
     width: 20%;

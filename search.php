@@ -1,6 +1,9 @@
+<?php session_start(); ?>
 <?php
 require_once ("./php/config.php");
-session_start();
+$page = $_SESSION['page'];
+array_push($page, "Search");
+$_SESSION['page'] = $page;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +12,19 @@ session_start();
     <title> Search </title>
     <link rel="stylesheet" type="text/css" href="css/general.css">
     <link rel="stylesheet" type="text/css" href="css/search.css">
-    <script type="text/javascript" src="JavaScript/general.js"></script>
+    <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
+    <!-- 登出操作 -->
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $("#logout").focus(function (){
+                $.ajax({
+                    url: "php/logout.php",
+                })
+            })
+        })
+    </script>
 </head>
-<body onload="goSearch();trackShow()">
+<body>
 
     <?php
     try{
@@ -49,8 +62,7 @@ session_start();
                     </a></li>
                 <?php
                 if(isset($_SESSION['username']) && isset($_SESSION['password'])){
-                    echo '<li><a href="index.php" class="navigation">LOGOUT</a></li>';
-                    session_destroy();
+                    echo '<li><a id="logout" href="index.php" class="navigation"">LOGOUT</a></li>';
                 }else{
                     echo '<li><a href="login.php" class="navigation">Login</a></li>';
                     echo '<script>sessionStorage.setItem(\'prev\', window.location.href)</script>';
@@ -64,7 +76,26 @@ session_start();
                     </a></li>
             </ul>
         </div>
-    <div id="track" class="track"></div>
+        <br>
+        <?php
+        // 打印足迹栏
+        $page = $_SESSION['page'];
+        $pageStr = "";
+        for($i = 0; $i < count($page); ++$i){
+            if($page[$i] == "Search"){
+                $pageStr .= $page[$i];
+                $page = array_slice($page, 0, $i + 1);
+                $_SESSION['page'] = $page;
+                break;
+            }
+            if($i == count($page) - 1){
+                $pageStr .= $page[$i];
+            }else {
+                $pageStr .= ($page[$i] . " -> ");
+            }
+        }
+        echo "<div id='track'>{$pageStr}</div>"
+        ?>
     <!------------------------------------------------------------------------------------------>
     <div class="search">
         <form style="text-align: left" action="./php/searchArtwork.php" method="get">

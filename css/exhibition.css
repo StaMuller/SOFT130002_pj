@@ -1,36 +1,22 @@
-#header{
-    background-color: white;
-    color: black;
-}
 #picture{
     width: 500px;
     height: 480px;
     float: right;
 }
-#description{
-    width: 500px;
-    height: 650px;
-    float: left;
-    font-family: "Georgia", Times, serif;
-    font-size: 18px;
-}
-#footer{
-    background-color: black;
-    color: white;
-    clear: both;
-    text-align: center;
-    padding: 5px;
-}
 .column{
     float: left;
-    width: 50%;
+    width: 40%;
     padding: 25px;
     text-align: center;
+    height: auto;
+    font-family: "Georgia", Times, serif;
+    font-size: 18px;
 }
 .row:after{
     content: "";
     display: table;
     clear: both;
+    height: auto;
 }
 .button{
     background: darkgray;

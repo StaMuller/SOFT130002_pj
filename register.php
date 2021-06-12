@@ -1,6 +1,9 @@
+<?php session_start(); ?>
 <?php
 require_once ("./php/config.php");
-session_start();
+$page = $_SESSION['page'];
+array_push($page, "Register");
+$_SESSION['page'] = $page;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,12 +14,46 @@ session_start();
     <link rel="stylesheet" type="text/css" href="css/general.css">
     <link rel="stylesheet" type="text/css" href="css/user.css">
     <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
-    <script type="text/javascript" src="JavaScript/general.js"></script>
+    <!-- 登出操作 -->
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $("#logout").focus(function (){
+                $.ajax({
+                    url: "php/logout.php",
+                })
+            })
+        })
+    </script>
     <!-- 注册监听 -->
     <script type="text/javascript">
         $(document).ready(function (){
+            $("#email").blur(function (){
+                if($(this).val() !== ""){
+                    $(this).css("background-color", "#E8F0FE");
+                }else{
+                    $(this).css("background-color", "white");
+                }
+            })
+            $("#tel").blur(function (){
+                if($(this).val() !== ""){
+                    $(this).css("background-color", "#E8F0FE");
+                }else{
+                    $(this).css("background-color", "white");
+                }
+            })
+            $("#address").blur(function (){
+                if($(this).val() !== ""){
+                    $(this).css("background-color", "#E8F0FE");
+                }else{
+                    $(this).css("background-color", "white");
+                }
+            })
             $("#username").blur(function (){
-                $(this).css("background-color", "#E8F0FE");
+                if($(this).val() !== ""){
+                    $(this).css("background-color", "#E8F0FE");
+                }else{
+                    $(this).css("background-color", "white");
+                }
                 $.ajax({
                     url: "php/registerConfirm.php",
                     type: "POST",
@@ -36,7 +73,11 @@ session_start();
                 })
             });
             $("#password").blur(function (){
-                $(this).css("background-color", "#E8F0FE");
+                if($(this).val() !== ""){
+                    $(this).css("background-color", "#E8F0FE");
+                }else{
+                    $(this).css("background-color", "white");
+                }
                 const test = /^(?=.*\d)(?=.*[a-zA-Z])[\dA-Za-z]{8,16}$/;
                 if(!test.test($(this).val())){
                     $("#passwordHint").html(
@@ -48,7 +89,11 @@ session_start();
                 }
             });
             $("#passwordConfirm").blur(function (){
-                $(this).css("background-color", "#E8F0FE");
+                if($(this).val() !== ""){
+                    $(this).css("background-color", "#E8F0FE");
+                }else{
+                    $(this).css("background-color", "white");
+                }
                 if($(this).val() !== $("#password").val()){
                     $("#passwordConfirmHint").html(
                         "<p style='color: red; font-family: \"Times New Roman\"; margin: 0'>" +
@@ -111,7 +156,7 @@ session_start();
         })
     </script>
 </head>
-<body onload="goRegister();trackShow()">
+<body>
     <div id="container">
     <div class="header">
         <?php
@@ -139,8 +184,7 @@ session_start();
                 </a></li>
                 <?php
                 if(isset($_SESSION['username']) && isset($_SESSION['password'])){
-                    echo '<li><a href="index.php" class="navigation">LOGOUT</a></li>';
-                    session_destroy();
+                    echo '<li><a id="logout" href="index.php" class="navigation"">LOGOUT</a></li>';
                 }else{
                     echo '<li><a href="login.php" class="navigation">Login</a></li>';
                     echo '<script>sessionStorage.setItem(\'prev\', window.location.href)</script>';
@@ -154,7 +198,26 @@ session_start();
                 </a></li>
             </ul>
         </div>
-    <div id="track"></div>
+        <br>
+        <?php
+        // 打印足迹栏
+        $page = $_SESSION['page'];
+        $pageStr = "";
+        for($i = 0; $i < count($page); ++$i){
+            if($page[$i] == "Register"){
+                $pageStr .= $page[$i];
+                $page = array_slice($page, 0, $i + 1);
+                $_SESSION['page'] = $page;
+                break;
+            }
+            if($i == count($page) - 1){
+                $pageStr .= $page[$i];
+            }else {
+                $pageStr .= ($page[$i] . " -> ");
+            }
+        }
+        echo "<div id='track'>{$pageStr}</div>"
+        ?>
     <!------------------------------------------------------------------------------------------>
     <h2 align="center" id="slogan">
         Sign Up For Your New Account.
