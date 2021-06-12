@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php
 require_once ("config.php");
 try{
@@ -10,24 +11,16 @@ try{
 
 <?php
 
-    $confirm = $_POST['confirm'];
+    $confirm = $_POST["confirm"];
     if($confirm == "username") {
         if(!username($_POST["username"])){
-            echo "<p style='color: red; font-family: \"Times New Roman\"; margin: 0'>username exists</p>";
+            $result = array("message" => "username exists");
+            echo json_encode($result);
+        }else{
+            $result = array("message" => "");
+            echo json_encode($result);
         }
-    }else if($confirm == "password"){
-        if(!password($_POST["password"])){
-            echo "<p style='color: red; font-family: \"Times New Roman\"; margin: 0'>
-                    password must be 8-16 long including both numbers and letters
-                  </p>";
-        }
-    }else if($confirm == "passwordConfirm"){
-        if(!passwordConfirm($_POST["password"], $_POST["passwordConfirm"])){
-            echo "<p style='color: red; font-family: \"Times New Roman\"; margin: 0'>
-                    password and password confirmation is unmatched.
-                  </p>";
-        }
-    }else if($confirm == "create") {
+    }else if($confirm == "submit") {
         $username = $_POST["username"];
         $password = $_POST["password"];
         $passwordConfirm = $_POST["passwordConfirm"];
@@ -38,14 +31,15 @@ try{
         // 最后检验信息
         if(!username($username) || !password($password) || !passwordConfirm($password, $passwordConfirm)
             || $username == "" || $password == "" || $passwordConfirm == ""){
-            echo "<p style='color: red; font-family: \"Times New Roman\"; margin: 0'>some invalid information</p>";
+            $result = array("message" => "fail");
+            echo json_encode($result);
         } else{
+            $_SESSION['username'] = $username;
+            $_SESSION['password'] = $password;
             $sql = "INSERT INTO users (`name`, email, password, tel, address) VALUES ('{$username}', '{$email}', '{$password}', '{$tel}', '{$address}')";
             $pdo->query($sql);
-            echo "<script type='text/javascript'>
-                    window.alert(\"REGISTER SUCCESSFULLY!\");
-                    window.location.href = ('./index.php');
-                  </script>";
+            $result = array("message" => "succeed");
+            echo json_encode($result);
         }
     }
 

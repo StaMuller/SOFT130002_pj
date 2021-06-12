@@ -1,12 +1,13 @@
 <?php
-    require_once ("./php/config.php");
+require_once ("./php/config.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <head>
     <title>
-        First Page
+        Home Page
     </title>
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/general.css">
@@ -25,12 +26,19 @@
 
     <div id="container">
     <div class="header">
-        <a href="collection.php?info=0">
-            <img src="resources/img/user.png" id="myAccount">
-        </a>
-        <h1 class="title">
-            Art World
-        </h1>
+        <?php
+            if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+                echo '<a href="collection.php?info=0"><img src="resources/img/user.png" id="myAccount"></a>';
+                echo '<h1 class="title">Art World</h1>';
+                echo '<h3 class="title" style="font-size: 20px; color: #664d03">'
+                    . $_SESSION['username']
+                    .', enjoy your art world!</h3>';
+            }else{
+                echo '<a href="login.php"><img src="resources/img/user.png" id="myAccount"></a>';
+                echo '<h1 class="title">Art World</h1>';
+                echo '<script>sessionStorage.setItem(\'prev\', window.location.href)</script>';
+            }
+        ?>
         <p class="slogan">
             Art is never abstruse.<br>
             She is just the emotional transmission of artists.
@@ -41,9 +49,15 @@
             <li><a href="register.php" class="navigation">
                 Register
             </a></li>
-            <li><a href="login.php" class="navigation">
-                Login
-            </a></li>
+            <?php
+                if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+                    echo '<li><a href="index.php" class="navigation">LOGOUT</a></li>';
+                    session_destroy();
+                }else{
+                    echo '<li><a href="login.php" class="navigation">Login</a></li>';
+                    echo '<script>sessionStorage.setItem(\'prev\', window.location.href)</script>';
+                }
+            ?>
             <li><a href="search.php?info=0&condition=view&currentPage=1" class="navigation">
                 Search
             </a></li>
@@ -63,13 +77,6 @@
                 $sql = "SELECT * FROM artworks ORDER BY view DESC limit 0,3";
                 $result = $pdo->query($sql);
                 while($photo = $result->fetch()){
-                    $sql = "SELECT * FROM wishlist WHERE artworkID = {$photo['artworkID']}";
-                    $exist = $pdo->query($sql);
-                    if($exist->fetch()){
-                        $added = 0;
-                    }else{
-                        $added = 1;
-                    }
                     $imageFileName = '<div class="headColumn"><a href="exhibition.php?artworkID=' . $photo['artworkID'] . '&added=' . $added . '"><img src="resources/img/' . $photo['imageFileName'] . '" class="head"></a>';
                     $title = '<h1 class="headPicTitle"><b>' . $photo['title'] . '</b></h1>';
                     $description = '<p class="headPicDes">' . $photo['description'] . '</p></div>';

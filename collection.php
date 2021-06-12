@@ -1,5 +1,6 @@
 <?php
 require_once ("./php/config.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,12 +25,19 @@ require_once ("./php/config.php");
 
     <div id="container">
     <div class="header">
-        <a href="collection.php?info=0">
-            <img src="resources/img/user.png" id="myAccount">
-        </a>
-        <h1 class="title">
-            Art World
-        </h1>
+        <?php
+        if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+            echo '<a href="collection.php?info=0"><img src="resources/img/user.png" id="myAccount"></a>';
+            echo '<h1 class="title">Art World</h1>';
+            echo '<h3 class="title" style="font-size: 20px; color: #664d03">'
+                . $_SESSION['username']
+                .', enjoy your art world!</h3>';
+        }else{
+            echo '<a href="login.php"><img src="resources/img/user.png" id="myAccount"></a>';
+            echo '<h1 class="title">Art World</h1>';
+            echo '<script>sessionStorage.setItem(\'prev\', window.location.href)</script>';
+        }
+        ?>
         <p class="slogan">
             This is your art world.
         </p>
@@ -39,9 +47,15 @@ require_once ("./php/config.php");
                 <li><a href="register.php" class="navigation">
                         Register
                     </a></li>
-                <li><a href="login.php" class="navigation">
-                        Login
-                    </a></li>
+                <?php
+                if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+                    echo '<li><a href="index.php" class="navigation">LOGOUT</a></li>';
+                    session_destroy();
+                }else{
+                    echo '<li><a href="login.php" class="navigation">Login</a></li>';
+                    echo '<script>sessionStorage.setItem(\'prev\', window.location.href)</script>';
+                }
+                ?>
                 <li><a href="search.php?info=0&condition=view&currentPage=1" class="navigation">
                         Search
                     </a></li>
@@ -82,7 +96,7 @@ require_once ("./php/config.php");
                 $artwork = $pdo->query($sql);
                 if($work = $artwork->fetch()) {
                     echo '<div class="card" id="card' . $index . '">';
-                    echo '<a href="exhibition.php?artworkID=' . $work['artworkID'] . '&&added=0" class="more"><h1 class="picTitle">' . $work['title'] . '</h1></a>';
+                    echo '<a href="exhibition.php?artworkID=' . $work['artworkID'] . '" class="more"><h1 class="picTitle">' . $work['title'] . '</h1></a>';
                     echo '<h2 class="picAuthor">' . $work['artist'] . '</h2>';
                     echo '<h2 style="font-size: 15px">' . $work['timeReleased'] . '</h2>';
                     echo '<img src="resources/img/' . $work['imageFileName'] . '" class="Image">';

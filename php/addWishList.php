@@ -1,5 +1,6 @@
 <?php
 require_once ("config.php");
+session_start();
 try{
     $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -9,17 +10,23 @@ try{
 ?>
 
 <?php
-    $artworkID = $_GET['artworkID'];
 
-    $sql2 = "SELECT * FROM wishlist WHERE artworkID = {$artworkID}";
-    $result = $pdo->query($sql2)->fetch();
-    $added = 0;
-
-    // 还未收藏，可以收藏
-    if($result == null){
-        $sql = "INSERT INTO wishlist (userID, artworkID) VALUES (1, '{$artworkID}')";
-        $pdo->query($sql);
+    $artworkID = $_POST['artworkID'];
+    if(isset($_SESSION['userID'])){
+        $added = $_POST['added'];
+        if($added = 1){
+            // 还未收藏，可以收藏
+            $sql = "INSERT INTO wishlist (userID, artworkID) VALUES ({$_SESSION['userID']}, {$artworkID})";
+            $pdo->query($sql);
+            $result = array("message" => "success");
+            echo json_encode($result);
+        }else{
+            $result = array("message" => "added");
+            echo json_encode($result);
+        }
+    }else{
+        $result = array("message" => "forbidden");
+        echo json_encode($result);
     }
 
-    echo "<script>window.location.href = ('../exhibition.php?artworkID={$artworkID}&&added={$added}');</script>";
 ?>

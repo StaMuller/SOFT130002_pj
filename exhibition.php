@@ -1,5 +1,6 @@
 <?php
 require_once ("./php/config.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@ require_once ("./php/config.php");
     </title>
     <link rel="stylesheet" type="text/css" href="css/exhibition.css">
     <link rel="stylesheet" type="text/css" href="css/general.css">
-    <script type="text/javascript" src="JavaScript/exhibition.js"></script>
+    <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
     <script type="text/javascript" src="JavaScript/general.js"></script>
 </head>
 
@@ -28,12 +29,19 @@ require_once ("./php/config.php");
     <!-- logo、标语与导航栏 -->
     <div id="container">
     <div class="header">
-        <a href="collection.php?info=0">
-            <img src="resources/img/user.png" id="myAccount">
-        </a>
-        <h1 class="title">
-            Art World
-        </h1>
+        <?php
+        if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+            echo '<a href="collection.php?info=0"><img src="resources/img/user.png" id="myAccount"></a>';
+            echo '<h1 class="title">Art World</h1>';
+            echo '<h3 class="title" style="font-size: 20px; color: #664d03">'
+                . $_SESSION['username']
+                .', enjoy your art world!</h3>';
+        }else{
+            echo '<a href="login.php"><img src="resources/img/user.png" id="myAccount"></a>';
+            echo '<h1 class="title">Art World</h1>';
+            echo '<script>sessionStorage.setItem(\'prev\', window.location.href)</script>';
+        }
+        ?>
         <p class="slogan">
             Art is never abstruse.<br>
             She is just the emotional transmission of artists.
@@ -44,9 +52,15 @@ require_once ("./php/config.php");
                 <li><a href="register.php" class="navigation">
                         Register
                     </a></li>
-                <li><a href="login.php" class="navigation">
-                        Login
-                    </a></li>
+                <?php
+                if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+                    echo '<li><a href="index.php" class="navigation">LOGOUT</a></li>';
+                    session_destroy();
+                }else{
+                    echo '<li><a href="login.php" class="navigation">Login</a></li>';
+                    echo '<script>sessionStorage.setItem(\'prev\', window.location.href )</script>';
+                }
+                ?>
                 <li><a href="search.php?info=0&condition=view&currentPage=1" class="navigation">
                         Search
                     </a></li>
@@ -59,8 +73,17 @@ require_once ("./php/config.php");
     <!------------------------------------------------------------------------------------------>
         <?php
             $artworkID = $_GET['artworkID'];
-            $added = $_GET['added'];
-            $sql = "SELECT * FROM artworks WHERE artworkID = '" . $artworkID . "'";
+            if(isset($_SESSION['userID'])){
+                $sql = "SELECT * FROM wishlist WHERE artworkID = {$artworkID} AND userID = {$_SESSION['userID']}" ;
+                if($pdo->query($sql)->fetch()){
+                    $added = 0;
+                }else{
+                    $added = 1;
+                }
+            }else{
+                $added = 1;
+            }
+            $sql = "SELECT * FROM artworks WHERE artworkID = {$artworkID}";
             $result = $pdo->query($sql);
             $artwork = $result->fetch();
 
@@ -75,7 +98,7 @@ require_once ("./php/config.php");
 
             $view = $view + 1;
             // 更新view信息
-            $sql = "UPDATE artworks SET view = '{$view}' WHERE artworkID = '{$artworkID}'";
+            $sql = "UPDATE artworks SET view = {$view} WHERE artworkID = {$artworkID}";
             $pdo->query($sql);
 
             $view = "View: {$view} <br>";
@@ -83,14 +106,19 @@ require_once ("./php/config.php");
             $price = 'Price: ' . $artwork['price'] . 'USD<br>';
             echo $title . $author . $picture . $yearOfWork . $genre . $size . $releaseTime . $view . $description . $price;
 
-            if($added == 1){
-                echo '<a href="./php/addWishList.php?artworkID=' . $artworkID . '">';
-                echo '<button class="button" onclick="addWishListSuccess()">ADD TO WISH LIST</button></a>';
-            }else{
-                echo '<button class="button" onclick="addWishListFailed()">ALREADY ADDED</button></a>';
-            }
-
         ?>
+
+        <button class="button" id="add" type="button">
+        <?php
+            if($added == 1){
+                echo 'ADD TO WISH LIST';
+            }else{
+                echo 'ALREADY ADDED';
+            }
+        ?>
+        </button>
+        <span id="addHint"></span>
+
             <br />
             <a class="more" href="index.php">
                 <b>SEE MORE GOODS</b>
@@ -102,5 +130,40 @@ require_once ("./php/config.php");
     <div id="myFooter">
         @ArtStore.Produced and maintained by Achillessanger at 2018.4.1 All Right Reserved
     </div>
+
+    <!-- 收藏监听 -->
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $("#add").focus(function (){
+                let artworkID = '<?php echo $artworkID?>';
+                let added = '<?php echo $added?>';
+                $.ajax({
+                    url: "php/addWishList.php",
+                    type: "POST",
+                    data: "artworkID=" + artworkID
+                        + "&added=" + added,
+                    dataType: "json",
+                    success:function (msg){
+                        if(msg.message === "forbidden"){
+                            $("#addHint").html(
+                                "<p style='color: red; font-family: \"Times New Roman\"; margin: 0'>" +
+                                    "FAILED. Please LOG IN first." +
+                                "</p>");
+                        }else if(msg.message === "added"){
+                            $("#addHint").html(
+                                "<p style='color: red; font-family: \"Times New Roman\"; margin: 0'>" +
+                                "ALREADY ADDED" +
+                                "</p>");
+                        }else{
+                            $("#addHint").html(
+                                "<p style='color: #146c43; font-family: \"Times New Roman\"; margin: 0'>" +
+                                "ADD SUCCESSFULLY!" +
+                                "</p>");
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 </body>
 </html>
