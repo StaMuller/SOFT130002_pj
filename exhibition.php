@@ -2,7 +2,8 @@
 <?php
 require_once ("./php/config.php");
 $page = $_SESSION['page'];
-array_push($page, "Exhibition");
+$artworkID = $_GET['artworkID'];
+array_push($page, "Exhibition" . $artworkID);
 $_SESSION['page'] = $page;
 ?>
 <!DOCTYPE html>
@@ -39,7 +40,6 @@ $_SESSION['page'] = $page;
     ?>
 
     <div id="container">
-        <div id="page">
             <!-- 头部 -->
             <div class="header">
                 <?php
@@ -83,31 +83,16 @@ $_SESSION['page'] = $page;
                         </a></li>
                 </ul>
             </div>
-
-            <!-- 足迹栏 -->
             <br>
+
+            <!-- 足迹栏部分 -->
             <?php
-            $page = $_SESSION['page'];
-            $pageStr = "";
-            for($i = 0; $i < count($page); ++$i){
-                if($page[$i] == "Exhibition"){
-                    $pageStr .= $page[$i];
-                    $page = array_slice($page, 0, $i + 1);
-                    $_SESSION['page'] = $page;
-                    break;
-                }
-                if($i == count($page) - 1){
-                    $pageStr .= $page[$i];
-                }else {
-                    $pageStr .= ($page[$i] . " -> ");
-                }
-            }
-            echo "<div id='track'>{$pageStr}</div>"
+                require_once ("./php/track.php");
+                trackShow("Exhibition");
             ?>
 
             <!------------------------------------------------------------------------------------------>
             <?php
-                $artworkID = $_GET['artworkID'];
                 if(isset($_SESSION['userID'])){
                     $sql = "SELECT * FROM wishlist WHERE artworkID = {$artworkID} AND userID = {$_SESSION['userID']}" ;
                     if($pdo->query($sql)->fetch()){
@@ -158,7 +143,6 @@ $_SESSION['page'] = $page;
             <a class="more" href="index.php">
                 <b>SEE MORE GOODS</b>
             </a>
-        </div>
     </div>
 
     <div id="myFooter">

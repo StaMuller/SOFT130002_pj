@@ -79,26 +79,12 @@ $_SESSION['page'] = $page;
                     </a></li>
             </ul>
         </div>
-
-        <!-- 足迹栏 -->
         <br>
+
+        <!-- 足迹栏部分 -->
         <?php
-        $page = $_SESSION['page'];
-        $pageStr = "";
-        for($i = 0; $i < count($page); ++$i){
-            if($page[$i] == "Collection"){
-                $pageStr .= $page[$i];
-                $page = array_slice($page, 0, $i + 1);
-                $_SESSION['page'] = $page;
-                break;
-            }
-            if($i == count($page) - 1){
-                $pageStr .= $page[$i];
-            }else {
-                $pageStr .= ($page[$i] . " -> ");
-            }
-        }
-        echo "<div id='track'>{$pageStr}</div>"
+        require_once ("./php/track.php");
+        trackShow("Collection");
         ?>
         <!------------------------------------------------------------------------------------------>
         <div class="search">
@@ -159,9 +145,9 @@ $_SESSION['page'] = $page;
 
                     $name = '<h1>' . $user['name'] . '</h1>';
                     $pic = '<div class="fakeImage" style="height: 200px">Picture</div>';
-                    $email = '<p>' . $user['email'] . '</p>';
-                    $tel = '<p>' . $user['tel'] . '</p>';
-                    $address = '<p>' . $user['address'] . '</p>';
+                    $email = '<p> Email: ' . $user['email'] . '</p>';
+                    $tel = '<p> Tel: ' . $user['tel'] . '</p>';
+                    $address = '<p> Address: ' . $user['address'] . '</p>';
 
                     echo $name . $pic . $email . $tel . $address;
                     ?>

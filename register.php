@@ -199,24 +199,10 @@ $_SESSION['page'] = $page;
             </ul>
         </div>
         <br>
+        <!-- 足迹栏部分 -->
         <?php
-        // 打印足迹栏
-        $page = $_SESSION['page'];
-        $pageStr = "";
-        for($i = 0; $i < count($page); ++$i){
-            if($page[$i] == "Register"){
-                $pageStr .= $page[$i];
-                $page = array_slice($page, 0, $i + 1);
-                $_SESSION['page'] = $page;
-                break;
-            }
-            if($i == count($page) - 1){
-                $pageStr .= $page[$i];
-            }else {
-                $pageStr .= ($page[$i] . " -> ");
-            }
-        }
-        echo "<div id='track'>{$pageStr}</div>"
+        require_once ("./php/track.php");
+        trackShow("Register");
         ?>
     <!------------------------------------------------------------------------------------------>
     <h2 align="center" id="slogan">

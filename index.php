@@ -9,7 +9,7 @@ $_SESSION["page"] = $page;
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <head>
     <title>
-        Home Page
+        Homepage
     </title>
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/general.css">
@@ -85,22 +85,8 @@ $_SESSION["page"] = $page;
 
         <!-- 足迹栏部分 -->
         <?php
-        $page = $_SESSION['page'];
-        $pageStr = "";
-        for($i = 0; $i < count($page); ++$i){
-            if($page[$i] == "Homepage"){
-                $pageStr .= $page[$i];
-                $page = array_slice($page, 0, $i + 1);
-                $_SESSION['page'] = $page;
-                break;
-            }
-            if($i == count($page) - 1){
-                $pageStr .= $page[$i];
-            }else {
-                $pageStr .= ($page[$i] . " -> ");
-            }
-        }
-        echo "<div id='track'>{$pageStr}</div>"
+            require_once ("./php/track.php");
+            trackShow("Homepage");
         ?>
         <!------------------------------------------------------------------------------------------>
         <div class="headPic">

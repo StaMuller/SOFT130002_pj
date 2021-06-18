@@ -15,8 +15,11 @@ input[type=text]{
 }
 .rightColumn{
     float: left;
-    width: 35%;
+    width: 25%;
     height: auto;
+    text-align: center;
+    margin-left: 30px;
+    font-family: "Times New Roman", Times, serif;
 }
 .row:after{
     content: "";
